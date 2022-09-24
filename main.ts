@@ -15,6 +15,9 @@ export default class InlineSearchPlugin extends Plugin implements CustomPlugin {
 	async onload() {
 		await this.loadSettings();
 
+		// This adds a settings tab so the user can configure various aspects of the plugin
+		this.addSettingTab(new InlineSearchSettingsTab(this.app, this));
+
 		// This creates an icon in the left ribbon.
 		const ribbonIconEl = this.addRibbonIcon(
 			"dice",
@@ -68,9 +71,6 @@ export default class InlineSearchPlugin extends Plugin implements CustomPlugin {
 				}
 			},
 		});
-
-		// This adds a settings tab so the user can configure various aspects of the plugin
-		this.addSettingTab(new InlineSearchSettingsTab(this.app, this));
 
 		// If the plugin hooks up any global DOM events (on parts of the app that doesn't belong to this plugin)
 		// Using this function will automatically remove the event listener when this plugin is disabled.
