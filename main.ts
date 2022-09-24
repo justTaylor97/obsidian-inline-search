@@ -89,11 +89,10 @@ export default class InlineSearchPlugin extends Plugin implements CustomPlugin {
 	}
 
 	async loadSettings() {
-		this.settings = Object.assign(
-			{},
-			DEFAULT_SETTINGS,
-			await this.loadData()
-		);
+		this.settings = {
+			...DEFAULT_SETTINGS,
+			...(await this.loadData()),
+		};
 	}
 
 	async saveSettings() {
